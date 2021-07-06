@@ -19,7 +19,7 @@ import discord
 import os
 import datetime
 import random
-import pyodbc
+import pypyodbc
 from colorama import init, Fore, Back, Style
 from dotenv import load_dotenv
 from pytz import timezone
@@ -129,7 +129,7 @@ def stringDictList(dictionaryList):
         keyString = "" 
         for key, value in line.items():
             if count == 0:
-                keyString += "**" + str(key) + "** "
+                keyString += "**" + str(key) + "** "    
             valueString += str(value) + " "
         if count == 0:
             stringList.append(keyString)
@@ -143,7 +143,7 @@ def stringDictList(dictionaryList):
 databaseActive = False
 init()
 try:
-    conn = pyodbc.connect("Driver={%s};SERVER=%s;DATABASE=%s;UID=%s;PWD=%s" % (dbDriver, dbServer, dbDatabase, userId, userSecret))
+    conn = pypyodbc.connect("Driver={%s};SERVER=%s;DATABASE=%s;UID=%s;PWD=%s" % (dbDriver, dbServer, dbDatabase, userId, userSecret))
     cursor = conn.cursor()
     databaseActive = True
     logMessageInfo(f"DB CONNECTION  : Bot has \033[32mCONNECTED SUCCESSFULLY\033[39m to {dbDatabase}")
